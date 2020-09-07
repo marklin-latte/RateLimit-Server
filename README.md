@@ -43,7 +43,7 @@ curl 127.0.0.1:3000/status
 {"error":"To many request ! Please wait 48 sec"}
 ```
 
-### Test
+### Spec Test Case
 
 ```
 npm run docker-test
@@ -58,12 +58,16 @@ Then
    Should return 200 http code
    And total counts equal 2 times. 
 
+---
+
 Given:
    The client had performed max times in a minutes
 When
    The client performes 1 times in the minutes
 Then
    Should return error http code 429
+
+---
 
 Given:
    The client had performed max times request at 61 sec ago
