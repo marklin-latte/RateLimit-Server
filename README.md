@@ -7,7 +7,7 @@
 ## Tech
 
 * Nodejs V10.15.3
-* Redis
+* Redis 6
 * Docker
 * Mocha
 
@@ -40,16 +40,42 @@ curl 127.0.0.1:3000/status
 ```
 curl 127.0.0.1:3000/status
 
-"error":"To many request ! Please wait 48 sec"}
+{"error":"To many request ! Please wait 48 sec"}
+```
+
+### Test
+
+```
+npm run docker-test
+```
+
+```
+Given:
+   The client did not do anything
+When
+   The client performes 2 times request
+Then 
+   Should return 200 http code
+   And total counts equal 2 times. 
+
+Given:
+   The client had performed max times in a minutes
+When
+   The client performes 1 times in the minutes
+Then
+   Should return error http code 429
+
+Given:
+   The client had performed max times request at 61 sec ago
+When
+   The client performes 1 times request
+Then
+   Should return 200 http code
+   And total counts equal 1 times. 
 ```
 
 ## Design Process
 
-### Step 1. 設計測試案例 
+### [請參考此份文件](https://github.com/h091237557/RateLimit-Server/wiki/Design-Process)
 
-### Step 2. 設計基礎架構 
-
-### Step 3. Redis 選擇與計數處理
-
-### Step 4. 後續擴展問題
 
