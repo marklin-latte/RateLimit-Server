@@ -1,6 +1,5 @@
-const redis = require("redis");
 const config =  require("../../config");
-const client = redis.createClient(config.redis);
+const {getClient} = require("./connect");
 const KEY = `${config.redis.prefix}:ips`; 
 const fs = require("fs"); 
 
@@ -18,6 +17,7 @@ module.exports = {
 	incr : (ip) => {
 		const key = `${KEY}:${ip}`;
 		return new Promise((resolve, reject) => {
+			const client = getClient();
 			client.eval(fs.readFileSync(__dirname + "/lurs/ip-incr.lua"), 1, 
 				key, 
 				config.ip_limit.max, 

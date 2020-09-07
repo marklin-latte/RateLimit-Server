@@ -23,10 +23,10 @@ module.exports = {
 			throw new OverLimitError(`To many request ! Please wait ${ttl} sec`);
 		}
 
-		return Promise.resolve({
+		return {
 			"count": res.count,
 			"reset_time": res.reset_time,
 			"ttl": ttl 
-		});
+		};
 	},
 };
